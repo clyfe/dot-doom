@@ -35,25 +35,6 @@
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/org/")
 
-;; This determines the style of line numbers in effect. If set to `nil', line
-;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type nil)
-
-;; Start fullscreen
-(add-hook 'emacs-startup-hook 'toggle-frame-maximized)
-
-;; Continue last session
-(add-hook 'emacs-startup-hook 'doom/quickload-session)
-
-;; Exit no confirm
-(setq confirm-kill-emacs nil)
-
-;; Cursor
-(setq-default cursor-type 'bar)
-
-;; Tabs
-(setq centaur-tabs-set-icons nil)
-
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
 ;; - `load!' for loading external *.el files relative to this one
@@ -71,5 +52,6 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
+(load! "+core")
 (load! "+treemacs")
 (load! "+bindings")
