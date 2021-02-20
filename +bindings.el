@@ -39,11 +39,15 @@
 (cua-key (kbd "<home>") 'doom/backward-to-bol-or-indent)
 (cua-key (kbd "<end>") 'doom/forward-to-last-non-comment-or-eol)
 
+;; Selection
+(cua-key (kbd "C-a") 'mark-whole-buffer)
+
 ;; Redo
 (cua-key (kbd "C-S-z") 'undo-fu-only-redo)
 
 ;; Files
-(cua-key (kbd "C-o") '+default/find-file-under-here) ;g
+(cua-key (kbd "C-o") '+default/find-file-under-here)
+(cua-key (kbd "C-k C-o") '+default/dired)
 (cua-key (kbd "C-s") 'save-buffer)
 (cua-key (kbd "C-w") 'kill-this-buffer)
 (cua-key (kbd "C-S-t") 'recentf-open-most-recent-file)
@@ -56,7 +60,10 @@
 (cua-key (kbd "C-d") 'duplicate-thing)
 (cua-key (kbd "C-/") 'my/comment-dwim)
 (cua-key (kbd "C-S-e") '+treemacs/toggle)
+(cua-key (kbd "C-b") '+treemacs/toggle)
 
 ;; Escape cancel
 (cua-key [escape] 'keyboard-escape-quit)
-(define-key company-active-map [escape] 'company-abort)
+(add-hook! company-mode
+  (define-key company-active-map [escape] 'company-abort))
+(define-key smartparens-mode-map (kbd "M-d") 'sp-kill-hybrid-sexp)
