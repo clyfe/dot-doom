@@ -2,22 +2,6 @@
 
 ;; Extended CUA mode bindings!
 
-;; From https://www.emacswiki.org/emacs/CommentingCode
-(defun my/comment-dwim ()
-  (interactive)
-  (let ((start (line-beginning-position))
-        (end (line-end-position)))
-    (when (or (not transient-mark-mode) (region-active-p))
-      (setq start (save-excursion
-                    (goto-char (region-beginning))
-                    (beginning-of-line)
-                    (point))
-            end (save-excursion
-                  (goto-char (region-end))
-                  (end-of-line)
-                  (point))))
-    (comment-or-uncomment-region start end)))
-
 ;; CUA Mode
 (cua-mode t)
 (setq cua-keep-region-after-copy t)
@@ -58,7 +42,7 @@
 
 ;; More
 (cua-key (kbd "C-d") 'duplicate-thing)
-(cua-key (kbd "C-/") 'my/comment-dwim)
+(cua-key (kbd "C-/") '+cua/comment-dwim)
 (cua-key (kbd "C-S-e") '+treemacs/toggle)
 (cua-key (kbd "C-b") '+treemacs/toggle)
 
@@ -66,4 +50,10 @@
 (cua-key [escape] 'keyboard-escape-quit)
 (add-hook! company-mode
   (define-key company-active-map [escape] 'company-abort))
+
+;; Paredit
+(define-key smartparens-mode-map (kbd "C-<left>") 'sp-backward-sexp)
+(define-key smartparens-mode-map (kbd "C-<right>") 'sp-forward-sexp)
+(define-key smartparens-mode-map (kbd "C-S-<left>") '+cua/select-left-word)
+(define-key smartparens-mode-map (kbd "C-S-<right>") '+cua/select-right-word)
 (define-key smartparens-mode-map (kbd "M-d") 'sp-kill-hybrid-sexp)

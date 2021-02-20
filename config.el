@@ -53,5 +53,6 @@
 ;; they are implemented.
 
 (load! "+core")
+(load! "+functions")
 (load! "+treemacs")
 (load! "+bindings")
