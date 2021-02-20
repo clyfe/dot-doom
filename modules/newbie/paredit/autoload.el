@@ -1,25 +1,7 @@
-;;; $DOOMDIR/+functions.el -*- lexical-binding: t; -*-
+;;; newbie/paredit/autoload.el -*- lexical-binding: t; -*-
 
-;; CUA utility functions!
-
-;; From https://www.emacswiki.org/emacs/CommentingCode
-(defun +cua/comment-dwim ()
-  "Like `comment-dwim' but comments lines at beginning."
-  (interactive)
-  (let ((start (line-beginning-position))
-        (end (line-end-position)))
-    (when (or (not transient-mark-mode) (region-active-p))
-      (setq start (save-excursion
-                    (goto-char (region-beginning))
-                    (beginning-of-line)
-                    (point))
-            end (save-excursion
-                  (goto-char (region-end))
-                  (end-of-line)
-                  (point))))
-    (comment-or-uncomment-region start end)))
-
-(defun +cua/handle-shift-selection ()
+;;;###autoload
+(defun newbie-paredit/handle-shift-selection ()
   "Activate/deactivate mark depending on invocation thru shift translation.
 This function is called by `call-interactively' when a command
 with a `^' character in its `interactive' spec is invoked, before
@@ -45,14 +27,16 @@ Compared to `handle-shift-selection' this does not mind
              (kill-local-variable 'transient-mark-mode))
          (deactivate-mark))))
 
-(defun +cua/select-left-word ()
+;;;###autoload
+(defun newbie-paredit/select-left-word ()
   "Move `left-word' and select."
   (interactive)
-  (+cua/handle-shift-selection)
+  (newbie-paredit/handle-shift-selection)
   (left-word))
 
-(defun +cua/select-right-word ()
+;;;###autoload
+(defun newbie-paredit/select-right-word ()
   "Move `right-word' and select."
   (interactive)
-  (+cua/handle-shift-selection)
+  (newbie-paredit/handle-shift-selection)
   (right-word))

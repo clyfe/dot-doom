@@ -180,6 +180,10 @@
        ;;(rss +org)        ; emacs as an RSS reader
        ;;twitter           ; twitter client https://twitter.com/vnought
 
+       :newbie
+       codium              ; Extended CUA of sorts
+       paredit             ; Paredit simplified
+
        :config
        ;;literate
        (default +bindings +smartparens))
