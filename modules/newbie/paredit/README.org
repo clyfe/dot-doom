@@ -1,0 +1,21 @@
+#+TITLE:   newbie/paredit
+#+DATE:    February 20, 2020
+#+SINCE:   v0.0.1
+#+STARTUP: inlineimages
+
+* Table of Contents :TOC_3:noexport:
+- [[#description][Description]]
+  - [[#module-flags][Module Flags]]
+  - [[#plugins][Plugins]]
+
+* Description
+This module adds simplified paredit key bindings when smartparens-mode is on.
+C-left/right is paredit movement.
+C-S-left/right is normal word selection (dubs as movement fallback).
+M-d is copy as kill.
+
+** Module Flags
+This module provides no flags.
+
+** Plugins
+This module provides no plugins.

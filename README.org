@@ -1,0 +1,10 @@
+#+TITLE:   doom/newbie
+#+DATE:    February 20, 2020
+#+SINCE:   v0.0.1
+#+STARTUP: inlineimages
+
+* Description
+Doom Emacs config (`.doom.d`) for newbies.
+* Modules
+`newbie/codium` VSCodium-esque key bindings to Emacs.
+`newbie/paredit` bindings for simplified paredit workflow.

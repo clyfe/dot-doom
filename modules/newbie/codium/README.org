@@ -1,0 +1,18 @@
+#+TITLE:   newbie/codium
+#+DATE:    February 20, 2020
+#+SINCE:   v0.0.1
+#+STARTUP: inlineimages
+
+* Table of Contents :TOC_3:noexport:
+- [[#description][Description]]
+  - [[#module-flags][Module Flags]]
+  - [[#plugins][Plugins]]
+
+* Description
+This module adds VSCodium-esque key bindings to Emacs.
+
+** Module Flags
+This module provides no flags.
+
+** Plugins
++ [[https://github.com/ongaeshi/duplicate-thing][duplicate-thing]]
