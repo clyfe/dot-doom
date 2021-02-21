@@ -1,40 +1,5 @@
 ;;; newbie/codium/mode.el -*- lexical-binding: t; -*-
 
-(require 'better-jumper)
-
-(defun newbie-codium/better-jumper-set-jump (&optional pos)
-  "Like `better-jumper-set-jump' but does not `push-mark'."
-  (unless (or
-           better-jumper--jumping
-           (better-jumper--ignore-persp-change))
-    ;; clear out intermediary jumps when a new one is set
-    (let* ((struct (better-jumper--get-struct))
-           (jump-list (better-jumper--get-struct-jump-list struct))
-           (idx (better-jumper-jump-list-struct-idx struct)))
-      (when (eq better-jumper-add-jump-behavior 'replace)
-        (cl-loop repeat idx
-                 do (ring-remove jump-list 0)))
-      (setf (better-jumper-jump-list-struct-idx struct) -1))
-    (save-excursion
-      (when pos
-        (goto-char pos))
-      (better-jumper--push))))
-
-(defun newbie-codium/better-jumper-advice (&rest _args)
-  (newbie-codium/better-jumper-set-jump))
-
-(defun newbie-codium/better-jumper-follow ()
-  (progn (advice-add 'push-mark :after #'newbie-codium/better-jumper-advice)
-         (advice-add 'switch-to-buffer :after #'newbie-codium/better-jumper-advice)
-         (advice-add 'find-file :after #'newbie-codium/better-jumper-advice)
-         (advice-add '+lookup/definition :after #'newbie-codium/better-jumper-advice)))
-
-(defun newbie-codium/better-jumper-unfollow ()
-  (progn (advice-remove 'push-mark #'newbie-codium/better-jumper-advice)
-         (advice-remove 'switch-to-buffer #'newbie-codium/better-jumper-advice)
-         (advice-remove 'find-file #'newbie-codium/better-jumper-advice)
-         (advice-remove '+lookup/definition #'newbie-codium/better-jumper-advice)))
-
 (define-minor-mode newbie-codium-mode
   "Extended CUA mode of sorts."
   :global t
