@@ -27,7 +27,7 @@
             (define-key map (kbd "C-S-z") 'undo-fu-only-redo)
 
             ;; Files
-            (define-key map (kbd "C-o") '+default/find-file-under-here)
+            (define-key map (kbd "C-o") '+ivy/projectile-find-file)
             (define-key map (kbd "C-k C-o") '+default/dired)
             (define-key map (kbd "C-s") 'save-buffer)
             (define-key map (kbd "C-w") 'kill-this-buffer)
