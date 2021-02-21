@@ -51,6 +51,10 @@
             (define-key map (kbd "M-<left>") 'better-jumper-jump-backward)
             (define-key map (kbd "M-<right>") 'better-jumper-jump-forward)
 
+            ;; Scroll
+            (define-key map (kbd "C-<up>") 'newbie-codium/scroll-up-in-place)
+            (define-key map (kbd "C-<down>") 'newbie-codium/scroll-down-in-place)
+
             ;; Movement
             (define-key map (kbd "<home>") 'doom/backward-to-bol-or-indent)
             (define-key map (kbd "<end>") 'doom/forward-to-last-non-comment-or-eol)

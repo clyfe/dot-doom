@@ -17,3 +17,17 @@
                   (end-of-line)
                   (point))))
     (comment-or-uncomment-region start end)))
+
+;;;###autoload
+(defun newbie-codium/scroll-up-in-place (n)
+  (interactive "p")
+  (forward-line (- 1 n))
+  (unless (eq (window-end) (point-max))
+    (scroll-up n)))
+
+;;;###autoload
+(defun newbie-codium/scroll-down-in-place (n)
+  (interactive "p")
+  (forward-line (- n 1))
+  (unless (eq (window-start) (point-min))
+    (scroll-down n)))
