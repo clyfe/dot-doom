@@ -37,6 +37,10 @@
             (define-key map (kbd "C-f") '+default/search-buffer)
             (define-key map (kbd "C-S-f") '+default/search-project)
 
+            ;; Replace
+            (define-key map (kbd "C-h") 'anzu-query-replace)
+            (define-key map (kbd "C-S-h") 'projectile-replace)
+
             ;; More
             (define-key map (kbd "C-d") 'duplicate-thing)
             (define-key map (kbd "C-/") 'newbie-codium/comment-dwim)
