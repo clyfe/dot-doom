@@ -32,6 +32,7 @@
             (define-key map (kbd "C-s") 'save-buffer)
             (define-key map (kbd "C-w") 'kill-this-buffer)
             (define-key map (kbd "C-S-t") 'recentf-open-most-recent-file)
+            (define-key map (kbd "C-r") 'counsel-buffer-or-recentf)
 
             ;; Find
             (define-key map (kbd "C-f") '+default/search-buffer)
