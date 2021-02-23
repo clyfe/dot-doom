@@ -44,5 +44,5 @@
 ;; they are implemented.
 
 (load! "config/core")
+(load! "config/ui")
 (load! "config/org")
-(load! "config/treemacs")
