@@ -6,3 +6,6 @@
 
 ;; Exit no confirm
 (setq confirm-kill-emacs nil)
+
+;; Agressive
+(global-aggressive-indent-mode 1)
