@@ -18,3 +18,6 @@
 ;; Treemacs
 (setq treemacs-width 25)
 (add-hook! treemacs-mode (text-scale-adjust -1))
+
+;; No revert confirm
+(setq git-gutter:ask-p nil)
