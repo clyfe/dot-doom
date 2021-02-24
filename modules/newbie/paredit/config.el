@@ -5,11 +5,11 @@
 ;; Paredit simplified
 
 (add-hook! emacs-lisp-mode
-  (newbie-paredit-mode t))
+  (newbie-paredit-mode +1))
 
 (add-hook! lisp-mode
-  (newbie-paredit-mode t))
+  (newbie-paredit-mode +1))
 
 (if (fboundp 'clojure-mode)
     (add-hook! clojure-mode
-      (newbie-paredit-mode t)))
+      (newbie-paredit-mode +1)))
