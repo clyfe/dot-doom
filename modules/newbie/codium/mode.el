@@ -12,7 +12,6 @@
             (define-key map (kbd "C-<next>") 'centaur-tabs-forward)
 
             ;; Code navigation
-            (define-key map (kbd "M-RET") '+lookup/definition)
             (define-key map (kbd "M-<left>") 'better-jumper-jump-backward)
             (define-key map (kbd "M-<right>") 'better-jumper-jump-forward)
 
