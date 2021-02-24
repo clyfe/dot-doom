@@ -11,6 +11,7 @@
 
 ;; Cursor
 (setq-default cursor-type 'bar)
+(blink-cursor-mode +1)
 
 ;; Tabs
 (setq centaur-tabs-set-icons nil)
