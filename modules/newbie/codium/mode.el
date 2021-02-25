@@ -50,6 +50,7 @@
             (define-key map (kbd "C-/") 'newbie-codium/comment-dwim)
             (define-key map (kbd "C-S-e") '+treemacs/toggle)
             (define-key map (kbd "C-b") '+treemacs/toggle)
+            (define-key map (kbd "C-\\") 'split-window-horizontally)
 
             map)
 
