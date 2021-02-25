@@ -8,8 +8,8 @@
             (define-key map [escape] 'keyboard-escape-quit)
 
             ;; Tabs
-            (define-key map (kbd "C-<prior>") 'centaur-tabs-backward)
-            (define-key map (kbd "C-<next>") 'centaur-tabs-forward)
+            (define-key map (kbd "C-<prior>") 'previous-buffer)
+            (define-key map (kbd "C-<next>") 'next-buffer)
 
             ;; Code navigation
             (define-key map (kbd "M-<left>") 'better-jumper-jump-backward)

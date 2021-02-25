@@ -13,9 +13,6 @@
 (setq-default cursor-type 'bar)
 (blink-cursor-mode +1)
 
-;; Tabs
-(setq centaur-tabs-set-icons nil)
-
 ;; Treemacs
 (setq treemacs-width 25)
 (add-hook! treemacs-mode (text-scale-adjust -1))
