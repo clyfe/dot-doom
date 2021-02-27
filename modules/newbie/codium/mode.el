@@ -5,7 +5,7 @@
   :global t
   :keymap (let ((map (make-sparse-keymap)))
             ;; Escape cancel
-            (define-key map [escape] 'keyboard-escape-quit)
+            (define-key map [escape] 'doom/escape)
 
             ;; Tabs
             (define-key map (kbd "C-<prior>") 'previous-buffer)
@@ -30,7 +30,9 @@
             (define-key map (kbd "C-S-z") 'undo-fu-only-redo)
 
             ;; Files
-            (define-key map (kbd "C-o") '+ivy/projectile-find-file)
+            (define-key map (kbd "C-p") '+ivy/projectile-find-file)
+            (define-key map (kbd "C-S-p") 'counsel-M-x)
+            (define-key map (kbd "C-o") 'counsel-find-file)
             (define-key map (kbd "C-k C-o") 'treemacs-add-project)
             (define-key map (kbd "C-s") 'save-buffer)
             (define-key map (kbd "C-w") 'kill-this-buffer)
@@ -46,6 +48,7 @@
             (define-key map (kbd "C-S-h") 'projectile-replace)
 
             ;; More
+            (define-key map (kbd "C-g") 'goto-line)
             (define-key map (kbd "C-d") 'duplicate-thing)
             (define-key map (kbd "C-/") 'newbie-codium/comment-dwim)
             (define-key map (kbd "C-S-e") '+treemacs/toggle)
