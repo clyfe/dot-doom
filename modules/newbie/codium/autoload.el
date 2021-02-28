@@ -68,24 +68,24 @@
 (defvar newbie-codium/shift-selection-just-deactivated-mark nil)
 
 ;;;###autoload
-(defun newbie-codium/handle-shift-selection ()
+(defun newbie-codium/handle-shift-selection-before ()
   (if (and (not (and shift-select-mode this-command-keys-shift-translated))
            (eq (car-safe transient-mark-mode) 'only))
       (setq newbie-codium/shift-selection-just-deactivated-mark t)))
 
 ;;;###autoload
-(defun newbie-codium/call-interactively (&rest _args)
+(defun newbie-codium/call-interactively-after (&rest _args)
   (if newbie-codium/shift-selection-just-deactivated-mark
       (setq newbie-codium/shift-selection-just-deactivated-mark nil)))
 
 ;;;###autoload
-(defun newbie-codium/left-char (f &rest args)
+(defun newbie-codium/left-char-around (f &rest args)
   (if newbie-codium/shift-selection-just-deactivated-mark
       (goto-char (min (mark) (point)))
     (apply f args)))
 
 ;;;###autoload
-(defun newbie-codium/right-char (f &rest args)
+(defun newbie-codium/right-char-around (f &rest args)
   (if newbie-codium/shift-selection-just-deactivated-mark
       (goto-char (max (mark) (point)))
     (apply f args)))
@@ -102,10 +102,10 @@
     (advice-add '+lookup/definition :after #'newbie-codium/better-jumper-advice)
 
     ;; Deselect arrows
-    (advice-add 'handle-shift-selection :before #'newbie-codium/handle-shift-selection)
-    (advice-add 'call-interactively :after #'newbie-codium/call-interactively)
-    (advice-add 'left-char :around #'newbie-codium/left-char)
-    (advice-add 'right-char :around #'newbie-codium/right-char)))
+    (advice-add 'handle-shift-selection :before #'newbie-codium/handle-shift-selection-before)
+    (advice-add 'call-interactively :after #'newbie-codium/call-interactively-after)
+    (advice-add 'left-char :around #'newbie-codium/left-char-around)
+    (advice-add 'right-char :around #'newbie-codium/right-char-around)))
 
 ;;;###autoload
 (defun newbie-codium/better-jumper-unfollow ()
@@ -117,7 +117,7 @@
     (advice-remove '+lookup/definition #'newbie-codium/better-jumper-advice)
 
     ;; Deselect arrows
-    (advice-remove 'handle-shift-selection #'newbie-codium/handle-shift-selection)
-    (advice-remove 'call-interactively #'newbie-codium/call-interactively)
-    (advice-remove 'left-char #'newbie-codium/left-char)
-    (advice-remove 'right-char #'newbie-codium/right-char)))
+    (advice-remove 'handle-shift-selection #'newbie-codium/handle-shift-selection-before)
+    (advice-remove 'call-interactively #'newbie-codium/call-interactively-after)
+    (advice-remove 'left-char #'newbie-codium/left-char-around)
+    (advice-remove 'right-char #'newbie-codium/right-char-around)))
