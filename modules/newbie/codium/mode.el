@@ -49,7 +49,7 @@
 
             ;; More
             (define-key map (kbd "C-g") 'goto-line)
-            (define-key map (kbd "C-d") 'duplicate-thing)
+            (define-key map (kbd "C-d") 'newbie-codium/duplicate-thing)
             (define-key map (kbd "C-/") 'newbie-codium/comment-dwim)
             (define-key map (kbd "C-S-e") '+treemacs/toggle)
             (define-key map (kbd "C-b") '+treemacs/toggle)

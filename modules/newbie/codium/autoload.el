@@ -90,6 +90,18 @@
       (goto-char (max (mark) (point)))
     (apply f args)))
 
+;;; Duplicate thing
+
+;;;###autoload
+(defun newbie-codium/duplicate-thing (n)
+  "Like `duplicate-thing' but maintains the cursor column."
+  (interactive "P")
+  (let ((col (current-column)))
+    (duplicate-thing n)
+    (forward-line -1)
+    (goto-char (+ (point) col))
+    (deactivate-mark)))
+
 ;;; ON/OFF
 
 ;;;###autoload
