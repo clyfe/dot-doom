@@ -63,16 +63,61 @@
 (defun newbie-codium/better-jumper-advice (&rest _args)
   (newbie-codium/better-jumper-set-jump))
 
+;;; Deselect arrows
+
+(defvar newbie-codium/shift-selection-just-deactivated-mark nil)
+
+;;;###autoload
+(defun newbie-codium/handle-shift-selection ()
+  (if (and (not (and shift-select-mode this-command-keys-shift-translated))
+           (eq (car-safe transient-mark-mode) 'only))
+      (setq newbie-codium/shift-selection-just-deactivated-mark t)))
+
+;;;###autoload
+(defun newbie-codium/call-interactively (&rest _args)
+  (if newbie-codium/shift-selection-just-deactivated-mark
+      (setq newbie-codium/shift-selection-just-deactivated-mark nil)))
+
+;;;###autoload
+(defun newbie-codium/left-char (f &rest args)
+  (if newbie-codium/shift-selection-just-deactivated-mark
+      (goto-char (min (mark) (point)))
+    (apply f args)))
+
+;;;###autoload
+(defun newbie-codium/right-char (f &rest args)
+  (if newbie-codium/shift-selection-just-deactivated-mark
+      (goto-char (max (mark) (point)))
+    (apply f args)))
+
+;;; ON/OFF
+
 ;;;###autoload
 (defun newbie-codium/better-jumper-follow ()
-  (progn (advice-add 'push-mark :after #'newbie-codium/better-jumper-advice)
-         (advice-add 'switch-to-buffer :after #'newbie-codium/better-jumper-advice)
-         (advice-add 'find-file :after #'newbie-codium/better-jumper-advice)
-         (advice-add '+lookup/definition :after #'newbie-codium/better-jumper-advice)))
+  (progn
+    ;;; Jumper follow
+    (advice-add 'push-mark :after #'newbie-codium/better-jumper-advice)
+    (advice-add 'switch-to-buffer :after #'newbie-codium/better-jumper-advice)
+    (advice-add 'find-file :after #'newbie-codium/better-jumper-advice)
+    (advice-add '+lookup/definition :after #'newbie-codium/better-jumper-advice)
+
+    ;; Deselect arrows
+    (advice-add 'handle-shift-selection :before #'newbie-codium/handle-shift-selection)
+    (advice-add 'call-interactively :after #'newbie-codium/call-interactively)
+    (advice-add 'left-char :around #'newbie-codium/left-char)
+    (advice-add 'right-char :around #'newbie-codium/right-char)))
 
 ;;;###autoload
 (defun newbie-codium/better-jumper-unfollow ()
-  (progn (advice-remove 'push-mark #'newbie-codium/better-jumper-advice)
-         (advice-remove 'switch-to-buffer #'newbie-codium/better-jumper-advice)
-         (advice-remove 'find-file #'newbie-codium/better-jumper-advice)
-         (advice-remove '+lookup/definition #'newbie-codium/better-jumper-advice)))
+  (progn
+    ;;; Jumper follow
+    (advice-remove 'push-mark #'newbie-codium/better-jumper-advice)
+    (advice-remove 'switch-to-buffer #'newbie-codium/better-jumper-advice)
+    (advice-remove 'find-file #'newbie-codium/better-jumper-advice)
+    (advice-remove '+lookup/definition #'newbie-codium/better-jumper-advice)
+
+    ;; Deselect arrows
+    (advice-remove 'handle-shift-selection #'newbie-codium/handle-shift-selection)
+    (advice-remove 'call-interactively #'newbie-codium/call-interactively)
+    (advice-remove 'left-char #'newbie-codium/left-char)
+    (advice-remove 'right-char #'newbie-codium/right-char)))
