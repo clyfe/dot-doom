@@ -24,6 +24,7 @@
 
 ;;;###autoload
 (defun newbie-codium/scroll-down-in-place (n)
+  "Scroll down keeping the point in place."
   (interactive "p")
   (forward-line (- 1 n))
   (unless (eq (window-end) (point-max))
@@ -31,6 +32,7 @@
 
 ;;;###autoload
 (defun newbie-codium/scroll-up-in-place (n)
+  "Scroll up keeping the point in place."
   (interactive "p")
   (forward-line (- n 1))
   (unless (eq (window-start) (point-min))
@@ -80,12 +82,16 @@
 
 ;;;###autoload
 (defun newbie-codium/left-char-around (f &rest args)
+  "If text selected, on pressing left arrow deselects and moves point to left of
+  selection."
   (if newbie-codium/shift-selection-just-deactivated-mark
       (goto-char (min (mark) (point)))
     (apply f args)))
 
 ;;;###autoload
 (defun newbie-codium/right-char-around (f &rest args)
+  "If text selected, on pressing left arrow deselects and moves point to right
+  of selection."
   (if newbie-codium/shift-selection-just-deactivated-mark
       (goto-char (max (mark) (point)))
     (apply f args)))
@@ -105,7 +111,8 @@
 ;;; ON/OFF
 
 ;;;###autoload
-(defun newbie-codium/better-jumper-follow ()
+(defun newbie-codium/advices-add ()
+  "Enables advices when `newbie-codium' mode is activated."
   (progn
     ;;; Jumper follow
     (advice-add 'push-mark :after #'newbie-codium/better-jumper-advice)
@@ -120,7 +127,8 @@
     (advice-add 'right-char :around #'newbie-codium/right-char-around)))
 
 ;;;###autoload
-(defun newbie-codium/better-jumper-unfollow ()
+(defun newbie-codium/advices-remove ()
+  "Remove advices when `newbie-codium' mode is deactivated."
   (progn
     ;;; Jumper follow
     (advice-remove 'push-mark #'newbie-codium/better-jumper-advice)

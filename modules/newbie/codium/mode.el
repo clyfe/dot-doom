@@ -58,5 +58,5 @@
             map)
 
   (if newbie-codium-mode
-      (newbie-codium/better-jumper-follow)
-    (newbie-codium/better-jumper-unfollow)))
+      (newbie-codium/advices-add)
+    (newbie-codium/advices-remove)))
