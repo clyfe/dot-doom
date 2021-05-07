@@ -11,7 +11,6 @@ Doom Emacs config (~.doom.d~) for newbies.
 * Install
 Clone into your ~.doom.d~.
 
-### License
-
-Copyright © 2019 clyfe
-Distributed under the GNU GPL license.
+* License
+- Copyright © 2019 clyfe
+- Distributed under the GNU GPL license.
