@@ -10,3 +10,8 @@ Doom Emacs config (~.doom.d~) for newbies.
 - ~newbie/paredit~ bindings for simplified paredit workflow.
 * Install
 Clone into your ~.doom.d~.
+
+### License
+
+Copyright © 2019 clyfe
+Distributed under the GNU GPL license.
