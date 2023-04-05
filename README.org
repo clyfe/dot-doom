@@ -9,8 +9,11 @@ Doom Emacs config (~.doom.d~) for newbies.
 - ~newbie/codium~ VSCodium-esque key bindings to Emacs.
 - ~newbie/paredit~ bindings for simplified paredit workflow.
 * Install
-Clone into your ~.doom.d~.
-
+Install [[https://github.com/doomemacs/doomemacs][Doom Emacs]]
+Clone this project into your Doom config, usually ~.doom.d~.
+You can now use Emacs with VSCodium bindings.
+* Example
+[[./example.png]]
 * License
 - Copyright © 2019 clyfe
 - Distributed under the GNU GPL license.
